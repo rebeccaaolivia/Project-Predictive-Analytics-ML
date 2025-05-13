@@ -156,31 +156,23 @@ Pairplot memberikan gambaran hubungan antar fitur berdasarkan label diagnosis. W
 Warna merah menunjukkan korelasi positif tinggi, sedangkan biru menunjukkan korelasi negatif. Terlihat bahwa fitur-fitur seperti `radius_mean`, `perimeter_mean`, dan `area_mean` sangat berkorelasi satu sama lain. Informasi ini berguna dalam pemilihan fitur atau teknik reduksi dimensi.
 
 ---
-
 3. Outlier Detection and Handling
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/65f9ea0c-ebcf-41f7-afd0-5c406a09e5b3" alt="Gambar 5. Mengecek outliers" width="500"/>
+</p>
 
-### 📦 Box Plot Sebelum & Sesudah Penanganan Outlier
+<p align="center"><strong>Gambar 5.</strong> Mengecek outliers</p>
 
-Visualisasi berikut menunjukkan distribusi nilai dari setiap fitur sebelum dan sesudah outlier dihilangkan.
-
-#### Sebelum:
-![Gambar 5. Boxplot Sebelum Outlier](insert_boxplot_before_path_here)
-
-#### Sesudah:
-![Gambar 6. Boxplot Setelah Outlier](insert_boxplot_after_path_here)
-
-**Keterangan Gambar 5 & 6**  
-Boxplot menunjukkan adanya outlier pada beberapa fitur. Setelah dilakukan penanganan menggunakan metode IQR (Interquartile Range), sebaran data menjadi lebih bersih dan normal.
+Boxplot menunjukkan nilai ekstrim (outlier) pada sebagian besar fitur. Outlier dapat mempengaruhi performa model dan perlu ditangani secara hati-hati. Setelah dilakukan penanganan menggunakan metode IQR (Interquartile Range), sebaran data menjadi lebih bersih dan normal. Fitur-fitur setelah penanganan menunjukkan distribusi yang lebih stabil tanpa banyak nilai pencilan ekstrem.
 
 ---
-
-## ⚖️ 4. Penanganan Ketidakseimbangan Kelas
+4. Class Imbalance & SMOTE
 
 ### 🔁 Oversampling dengan SMOTE
 
 Distribusi kelas setelah diterapkan teknik *oversampling* menggunakan SMOTE:
 
-```plaintext
+plaintext
 Distribusi kelas setelah oversampling: Counter({0: 907, 1: 907})
 
 2. 
