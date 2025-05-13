@@ -261,7 +261,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 
 ### Random Forest
-**Random Forest** adalah algoritma ensemble machine learning berbasis pohon keputusan yang digunakan untuk tugas klasifikasi maupun regresi. Algoritma ini bekerja dengan membangun sejumlah pohon keputusan (decision trees) selama proses pelatihan, lalu menggabungkan hasil prediksi dari setiap pohon. Dalam kasus klasifikasi, prediksi akhir ditentukan berdasarkan voting mayoritas dari seluruh pohon. Pendekatan ini secara efektif mengurangi risiko overfitting yang sering terjadi pada model pohon tunggal serta meningkatkan kemampuan generalisasi model. Dengan menyatukan banyak pohon yang relatif tidak berkorelasi, Random Forest mampu menghasilkan prediksi yang lebih stabil dan akurat[[11](https://hostjournals.com/jimat/article/view/473/289)].
+**Random Forest** adalah algoritma ensemble machine learning berbasis pohon keputusan yang digunakan untuk tugas klasifikasi maupun regresi. Algoritma ini bekerja dengan membangun sejumlah pohon keputusan (decision trees) selama proses pelatihan, lalu menggabungkan hasil prediksi dari setiap pohon. Dalam kasus klasifikasi, prediksi akhir ditentukan berdasarkan voting mayoritas dari seluruh pohon. Pendekatan ini secara efektif mengurangi risiko overfitting yang sering terjadi pada model pohon tunggal serta meningkatkan kemampuan generalisasi model. Dengan menyatukan banyak pohon yang relatif tidak berkorelasi, Random Forest mampu menghasilkan prediksi yang lebih stabil dan akurat [[11](https://hostjournals.com/jimat/article/view/473/289)].
 
 **Tahapan Pemodelan**
 1. Baseline Model
@@ -300,7 +300,125 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 5. Kesimpulan Sementara
    
    Random Forest menunjukkan performa yang cukup baik dan stabil. Setelah tuning, terjadi peningkatan akurasi testing dari 79.63% menjadi 81.28%. Hal ini menunjukkan bahwa model dapat lebih baik dalam melakukan generalisasi terhadap data baru setelah dilakukan penyetelan parameter.
+
+
+### KNN (K-Nearest Neighbor)
+**K-Nearest Neighbor (KNN)** adalah algoritma klasifikasi non-parametrik yang bekerja dengan menentukan kelas dari data baru berdasarkan mayoritas label dari K tetangga terdekatnya. Termasuk *lazy learner*, KNN tidak membentuk model selama pelatihan, melainkan menggunakan seluruh data untuk prediksi. Meski sederhana, KNN cukup efektif dan dapat mengungguli model kompleks dalam beberapa kasus, terutama pada dataset kecil. Namun, performanya bisa menurun jika terdapat fitur tidak relevan atau pada data berdimensi tinggi [[12](https://dspace.uii.ac.id/bitstream/handle/123456789/29782/15611077%20Meila%20Ika%20Pradipta.pdf?sequence=1&isAllowed=y)].
+
+**Tahapan Pemodelan**
+1. Baseline Model
    
+   Model awal dibuat menggunakan parameter default dengan sedikit penyesuaian:
+   - `n_neighbors = 5`: Jumlah tetangga terdekat yang digunakan untuk voting kelas.
+
+   Hasil evaluasi model:
+   - Akurasi Training: 84.40%
+   - Akurasi Testing: 70.83%
+   Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
+
+2. Hyperparameter Tuning
+
+   Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
+   - Akurasi Training: 100.00%
+   - Akurasi Testing: 78.17%
+     
+3. Perbandingan Kinerja
+   | Model          | Akurasi Training | Akurasi Testing |
+   | -------------- | ---------------- | --------------- |
+   | KNN (Baseline) | 84.40%           | 70.83%          |
+   | KNN (Tuned)    | 100.00%          | 78.17%          |
+
+   Model hasil tuning menunjukkan lonjakan akurasi training yang sangat tinggi, namun tetap mengalami peningkatan akurasi testing sebesar +7.34% dibandingkan baseline.
+
+4. Analisis Kelebihan & Kekurangan
+   | Aspek          | Penjelasan                                                                                                                                                                          |
+   | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Kelebihan**  | - Implementasi sederhana. <br> - Tidak memerlukan pelatihan eksplisit. <br> - Cocok untuk data dengan distribusi kompleks.                                                          |
+   | **Kekurangan** | - Sensitif terhadap skala data. <br> - Waktu prediksi lambat untuk dataset besar. <br> - Rentan terhadap overfitting, terutama jika `weights='distance'` dan data memiliki outlier. |
+
+5. Kesimpulan Sementara
+   
+   KNN memberikan performa yang cukup kompetitif setelah tuning, dengan peningkatan akurasi testing yang signifikan. Namun, peningkatan akurasi training hingga 100% menjadi indikasi potensi overfitting. Oleh karena itu, meskipun performa meningkat, model ini perlu dipertimbangkan dengan hati-hati dalam implementasi nyata.
+
+
+### Support Vector Classifier
+**Support Vector Classifier (SVC)** merupakan algoritma klasifikasi yang termasuk dalam keluarga Support Vector Machine (SVM). Algoritma ini bekerja dengan mencari hyperplane terbaik yang dapat memisahkan kelas-kelas dalam ruang berdimensi tinggi. SVC efektif digunakan untuk masalah klasifikasi linier maupun non-linier, dan dikenal mampu menghasilkan margin klasifikasi maksimum. Dengan kernel trick, SVC dapat menangani data non-linier dengan memetakan data ke ruang fitur berdimensi lebih tinggi [[12](https://scikit-learn.org/stable/modules/svm.html)].
+
+**Tahapan Pemodelan**
+1. Baseline Model
+   
+   Model awal dibuat menggunakan parameter default dengan sedikit penyesuaian:
+   - `kernel='rbf'`: Menggunakan Radial Basis Function sebagai fungsi kernel.
+   - `C=1.0`: Parameter regulasi default.
+   - `random_state=42`: Untuk memastikan reprodusibilitas hasil.
+
+   Hasil evaluasi model:
+   - Akurasi Training: 67.22%
+   - Akurasi Testing: 68.26%
+   Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
+
+2. Hyperparameter Tuning
+
+   Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
+   - Akurasi Training: 99.92%
+   - Akurasi Testing: 81.65%
+
+3. Perbandingan Kinerja
+   | Model          | Akurasi Training | Akurasi Testing |
+   | -------------- | ---------------- | --------------- |
+   | SVC (Baseline) | 67.22%           | 68.26%          |
+   | SVC (Tuned)    | 99.92%           | 81.65%          |
+
+   Tuning menghasilkan lonjakan signifikan pada akurasi training dan peningkatan akurasi testing sebesar +13.39% dibandingkan baseline.
+
+4. Analisis Kelebihan & Kekurangan                                                                                                                                      
+   | Aspek          | Penjelasan                                                                                                                                                          |
+   | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Kelebihan**  | - Efektif untuk data berdimensi tinggi. <br> - Mampu menangani klasifikasi linier dan non-linier. <br> - Mendukung berbagai fungsi kernel.                          |
+   | **Kekurangan** | - Sensitif terhadap pemilihan parameter `C`, `kernel`, dan `gamma`. <br> - Waktu komputasi tinggi pada dataset besar. <br> - Kurang transparan secara interpretasi. |
+
+5. Kesimpulan Sementara
+   
+   Support Vector Classifier menunjukkan peningkatan performa yang signifikan setelah tuning. Namun, akurasi training yang sangat tinggi dapat menjadi indikasi overfitting. Oleh karena itu, model ini layak dipertimbangkan lebih lanjut dengan pengujian tambahan sebelum diimplementasikan secara nyata.
+
+
+### Naive Bayes
+**Naive Bayes** adalah algoritma klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur. Model ini menghitung probabilitas setiap kelas berdasarkan distribusi fitur dan memilih kelas dengan probabilitas tertinggi. Salah satu variannya, Gaussian Naive Bayes, digunakan ketika fitur mengikuti distribusi normal. Naive Bayes dikenal cepat dan efisien, terutama untuk data berdimensi tinggi dan masalah klasifikasi teks, meskipun performanya bisa menurun ketika asumsi independensi tidak terpenuhi [13(https://scikit-learn.org/stable/modules/naive_bayes.html)].
+
+**Tahapan Pemodelan**
+1. Baseline Model
+   
+   Model awal dibangun dengan parameter default dari `GaussianNB`. Tidak ada parameter khusus yang disetel pada tahap awal.
+
+   Hasil evaluasi model:
+   - Akurasi Training: 77.15%
+   - Akurasi Testing: 75.78%
+   Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
+
+2. Hyperparameter Tuning
+
+   Untuk menyempurnakan performa, dilakukan pencarian nilai optimal dari parameter `var_smoothing`. Hasil evaluasi model setelah tuning:
+   - Akurasi Training: 77.23%
+   - Akurasi Testing: 75.60%
+
+3. Perbandingan Kinerja
+   | Model                  | Akurasi Training | Akurasi Testing |
+   | ---------------------- | ---------------- | --------------- |
+   | Naive Bayes (Baseline) | 77.15%           | 75.78%          |
+   | Naive Bayes (Tuned)    | 77.23%           | 75.60%          |
+
+   Tuning tidak menghasilkan peningkatan signifikan, bahkan terjadi sedikit penurunan pada akurasi testing sebesar -0.18%.
+
+4. Analisis Kelebihan & Kekurangan                                                                                                                                      
+   | Aspek          | Penjelasan                                                                                                                                             |
+   | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   | **Kelebihan**  | - Cepat dan efisien. <br> - Performa baik untuk data berdimensi tinggi. <br> - Cocok untuk klasifikasi teks dan data yang mendekati distribusi normal. |
+   | **Kekurangan** | - Asumsi independensi fitur jarang terpenuhi dalam data nyata. <br> - Kurang fleksibel dalam menangani fitur yang berkorelasi.                         |
+
+5. Kesimpulan Sementara
+   
+   Naive Bayes memberikan performa awal yang cukup stabil namun tidak meningkat signifikan setelah tuning. Ini menunjukkan bahwa model ini relatif sensitif terhadap asumsi distribusi dan kurang responsif terhadap optimisasi parameter, sehingga lebih cocok digunakan sebagai baseline model daripada solusi utama dalam kasus ini.
+  
 ## Evaluation
 
 
