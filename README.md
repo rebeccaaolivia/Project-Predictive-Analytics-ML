@@ -198,7 +198,23 @@ Gambar ini membandingkan jumlah data antar kelas:
 - Setelah SMOTE: distribusi menjadi seimbang (907 data per kelas), sehingga model dapat dilatih dengan adil dan tidak bias.
 
 ## Data Preparation
+Pada tahap ini, dilakukan beberapa teknik persiapan data agar model machine learning dapat dilatih dengan optimal. Teknik yang digunakan mencakup **Data Splitting** dan **Standardization**, yang dijelaskan secara berurutan sesuai implementasi dalam notebook.
 
+### Data Splitting
+Tahap ini bertujuan untuk membagi data menjadi **data pelatihan (training set)** dan **data pengujian (testing set)**. Pemisahan ini penting agar model dapat diuji pada data yang belum pernah dilihat sebelumnya, guna mengevaluasi kemampuan generalisasinya.
+- Teknik: `train_test_split` dari `sklearn.model_selection`
+- Proporsi: 70% data untuk pelatihan, 30% untuk pengujian
+- Alasan:
+  - Menghindari overfitting karena model hanya dilatih pada subset data (training set).
+  - Memungkinkan evaluasi performa model yang lebih objektif menggunakan testing set.
+
+### Standardization
+Standarisasi dilakukan untuk memastikan bahwa seluruh fitur numerik berada dalam skala yang sama. Ini sangat penting terutama untuk algoritma yang sensitif terhadap skala data seperti _K-Nearest Neighbors_, SVM, Logistic Regression, dan lain-lain.
+- Teknik: `StandardScaler` dari `sklearn.preprocessing`
+- Apa yang dilakukan: Mengubah fitur agar memiliki distribusi dengan **mean = 0** dan **standar deviasi = 1**.
+- Alasan:
+  - Mempercepat proses konvergensi pada algoritma pembelajaran.
+  - Menghindari dominasi fitur dengan nilai besar terhadap model.
 
 ## Modeling
 
