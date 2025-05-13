@@ -476,33 +476,31 @@ Berdasarkan hasil evaluasi:
 Dengan mempertimbangkan aspek performa, stabilitas, dan peningkatan setelah tuning, **SVC dipilih sebagai model klasifikasi terbaik** untuk dataset ini. Namun, **Random Forest** tetap menjadi pilihan yang solid jika dibutuhkan model dengan interpretabilitas dan kestabilan lebih tinggi.
 
 ## Referensi
-[1]
 
-[2]
+**[1]** L. Hafsah, “Gambaran tingkat kecemasan pada pasien kanker yang menjalani kemoterapi di RSUD Dr. M. Yunus Bengkulu,” *J. Vokasi Keperawatan (JVK)*, vol. 5, no. 1, pp. 21–28, 2022.  
 
-[3]
+**[2]** UGM, “Jumlah penderita kanker terus meningkat, kenali gejala awal untuk deteksi dini,” *Universitas Gadjah Mada*, 2023. [Online]. Available: https://ugm.ac.id/id/berita/jumlah-penderita-kanker-terus-meningkat-kenali-gejala-awal-untuk-deteksi-dini/. [Accessed: May 13, 2024].  
 
-[4]
+**[3]** M. T. T. B. Sirait, N. S. Fathonah, and M. N. Fauzan, “Pemanfaatan algoritma ADASYN dan support vector machine dalam meningkatkan akurasi prediksi kanker paru-paru,” *JATI (J. Mahasiswa Tek. Inform.)*, vol. 8, no. 5, pp. 8773–8778, 2024.  
 
-[5]
+**[4]** I. P. Putri, T. Terttiaavini, and N. Arminarahmah, "Comparative analysis of machine learning algorithms for predicting child stunting," *MALCOM Indones. J. Mach. Learn. Comput. Sci.*, vol. 4, pp. 257–265, 2024.
 
-[6]
+**[5]** D. P. Sinambela, H. Naparin, M. Zulfadhilah, and N. Hidayah, "Implementasi algoritma decision tree dan random forest dalam prediksi perdarahan pascasalin," *J. Inform. dan Teknol.*, pp. 58–64, 2023.
 
-[7]
+**[6]** H. Tuhuteru and A. Iriani, "Analisis sentimen Perusahaan Listrik Negara Cabang Ambon menggunakan metode support vector machine dan naive Bayes classifier," *J. Informatika: J. Pengembangan IT*, vol. 3, no. 3, pp. 394–401, 2018.
 
-[8]
+**[7]** M. Syawaludin and M. Khulaimi, "Perancangan sistem pakar prediksi diagnosis penyakit diabetes menggunakan algoritma naive Bayes berbasis web," *Jikom: J. Informatika dan Komputer*, vol. 15, no. 1, pp. 161–171, 2025.
 
-[9]
+**[8]** K. Handayani, E. Erni, B. Lailiah, and R. Sa'adah, "Klasifikasi kanker payudara menggunakan extra tree dengan SMOTE," *JATI (J. Mahasiswa Tek. Inform.)*, vol. 7, no. 6, pp. 3100–3105, 2023.
 
-[10]
+**[9]** M. E. M. Zees, *Implementasi Autogluon dalam efisiensi model prediktif machine learning pada dataset International Business Machines (IBM) Human Resource (HR) Analytics Employee Attrition*, Doctoral dissertation, Universitas Islam Indonesia, 2023.
 
-[11]
+**[10]** R. A. Effendy, *Eksplorasi algoritma tree based model untuk kasus tipe kepribadian dengan Myers Briggs Type Indicator (MBTI)*, Doctoral dissertation, Universitas Islam Indonesia, 2025.
 
-[12]
+**[11]** M. Fadhilla, R. Wandri, A. Hanafiah, P. R. Setiawan, Y. Arta, and S. Daulay, "Analisis performa algoritma machine learning untuk identifikasi depresi pada mahasiswa," *J. Inform. Manag. dan Inf. Technol.*, vol. 5, no. 1, pp. 40–47, 2025.
 
-[13]
+**[12]** A. Kesumawati, *Klasifikasi curah hujan menggunakan metode ensemble subset K-nearest neighbor (Studi kasus: Curah hujan Kota Bogor Tahun 2014–2018)*, 2020.
 
-[14]
+**[13]** Scikit-learn, "Support vector machines," *scikit-learn*, 2024. [Online]. Available: https://scikit-learn.org/stable/modules/svm.html. [Accessed: May 13, 2024].
 
-
-
+**[14]** Scikit-learn, "Naive Bayes," *scikit-learn*, 2024. [Online]. Available: https://scikit-learn.org/stable/modules/naive_bayes.html. [Accessed: May 13, 2024].
