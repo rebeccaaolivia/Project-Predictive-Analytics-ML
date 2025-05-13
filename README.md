@@ -158,26 +158,45 @@ Warna merah menunjukkan korelasi positif tinggi, sedangkan biru menunjukkan kore
 ---
 3. Outlier Detection and Handling
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/65f9ea0c-ebcf-41f7-afd0-5c406a09e5b3" alt="Gambar 5. Mengecek outliers" width="500"/>
+  <img src="https://github.com/user-attachments/assets/39281b8e-2fa5-44df-858d-814c56551339" alt="Gambar 5. Boxplot Sebelum Penanganan Outlier" width="500"/>
 </p>
 
-<p align="center"><strong>Gambar 5.</strong> Mengecek outliers</p>
+<p align="center"><strong>Gambar 5.</strong> Boxplot Sebelum Penanganan Outlier</p>
 
-Boxplot menunjukkan nilai ekstrim (outlier) pada sebagian besar fitur. Outlier dapat mempengaruhi performa model dan perlu ditangani secara hati-hati. Setelah dilakukan penanganan menggunakan metode IQR (Interquartile Range), sebaran data menjadi lebih bersih dan normal. Fitur-fitur setelah penanganan menunjukkan distribusi yang lebih stabil tanpa banyak nilai pencilan ekstrem.
+Boxplot menunjukkan nilai ekstrim (outlier) pada sebagian besar fitur. Outlier dapat mempengaruhi performa model dan perlu ditangani secara hati-hati.
+
+Setelah proses deteksi dan pembersihan menggunakan metode Interquartile Range (IQR), data menjadi lebih bersih:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/65f9ea0c-ebcf-41f7-afd0-5c406a09e5b3" alt="Gambar 6. Boxplot Setelah Penangan Outliers" width="500"/>
+</p>
+
+<p align="center"><strong>Gambar 6.</strong> Boxplot Setelah Penanganan Outlier</p>
+
+Fitur-fitur setelah penanganan menunjukkan distribusi yang lebih stabil tanpa banyak nilai pencilan ekstrem.
 
 ---
 4. Class Imbalance & SMOTE
+**Distribusi Kelas Sebelum Oversampling**
+Distribusi awal kelas target:
+- `Kelas 0` (non-kanker): 907 data
+- `Kelas 1` (kanker): 377 data
+Distribusi ini menunjukkan ketimpangan kelas (class imbalance) yang signifikan. Jika tidak ditangani, model akan cenderung bias terhadap kelas mayoritas.
 
-### 🔁 Oversampling dengan SMOTE
-
-Distribusi kelas setelah diterapkan teknik *oversampling* menggunakan SMOTE:
-
-plaintext
+**Output Distribusi Kelas Setelah SMOTE**
 Distribusi kelas setelah oversampling: Counter({0: 907, 1: 907})
 
-2. 
+Teknik SMOTE (Synthetic Minority Oversampling Technique) digunakan untuk menyeimbangkan kelas dengan menambahkan data sintetis pada kelas minoritas (kanker).
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8ce69ebf-c968-4f30-98e4-653ba124b23c" alt="Gambar 7. Visualisasi Sebelum dan Sesudah SMOTE" width="500"/>
+</p>
 
+<p align="center"><strong>Gambar 7.</strong> Visualisasi Sebelum dan Sesudah SMOTE</p>
+
+Gambar ini membandingkan jumlah data antar kelas:
+- Sebelum SMOTE: kelas kanker (merah) jauh lebih sedikit dibanding non-kanker (hijau),
+- Setelah SMOTE: distribusi menjadi seimbang (907 data per kelas), sehingga model dapat dilatih dengan adil dan tidak bias.
 
 ## Data Preparation
 
