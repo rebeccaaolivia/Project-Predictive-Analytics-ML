@@ -54,6 +54,16 @@ Untuk mencapai tujuan proyek ini, langkah-langkah yang dilakukan meliputi:
 ## Data Understanding
 
 
+## Data Preparation
+
+
+## Modeling
+
+
+## Evaluation
+
+
+# Referensi
 
 
 
