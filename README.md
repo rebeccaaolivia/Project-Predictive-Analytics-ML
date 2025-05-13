@@ -177,7 +177,6 @@ Fitur-fitur setelah penanganan menunjukkan distribusi yang lebih stabil tanpa ba
 
 ---
 4. Class Imbalance & SMOTE
-**Distribusi Kelas Sebelum Oversampling**
 
 Distribusi awal kelas target:
 - `Kelas 0` (non-kanker): 907 data
@@ -185,8 +184,6 @@ Distribusi awal kelas target:
 Distribusi ini menunjukkan ketimpangan kelas (class imbalance) yang signifikan. Jika tidak ditangani, model akan cenderung bias terhadap kelas mayoritas.
 
 **Output Distribusi Kelas Setelah SMOTE**
-
-Distribusi kelas setelah oversampling: Counter({0: 907, 1: 907})
 
 Teknik SMOTE (Synthetic Minority Oversampling Technique) digunakan untuk menyeimbangkan kelas dengan menambahkan data sintetis pada kelas minoritas (kanker).
 
