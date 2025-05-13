@@ -383,7 +383,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 
 ### Naive Bayes
-**Naive Bayes** adalah algoritma klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur. Model ini menghitung probabilitas setiap kelas berdasarkan distribusi fitur dan memilih kelas dengan probabilitas tertinggi. Salah satu variannya, Gaussian Naive Bayes, digunakan ketika fitur mengikuti distribusi normal. Naive Bayes dikenal cepat dan efisien, terutama untuk data berdimensi tinggi dan masalah klasifikasi teks, meskipun performanya bisa menurun ketika asumsi independensi tidak terpenuhi [13(https://scikit-learn.org/stable/modules/naive_bayes.html)].
+**Naive Bayes** adalah algoritma klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur. Model ini menghitung probabilitas setiap kelas berdasarkan distribusi fitur dan memilih kelas dengan probabilitas tertinggi. Salah satu variannya, Gaussian Naive Bayes, digunakan ketika fitur mengikuti distribusi normal. Naive Bayes dikenal cepat dan efisien, terutama untuk data berdimensi tinggi dan masalah klasifikasi teks, meskipun performanya bisa menurun ketika asumsi independensi tidak terpenuhi [[13](https://scikit-learn.org/stable/modules/naive_bayes.html)].
 
 **Tahapan Pemodelan**
 1. Baseline Model
@@ -420,6 +420,9 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    Naive Bayes memberikan performa awal yang cukup stabil namun tidak meningkat signifikan setelah tuning. Ini menunjukkan bahwa model ini relatif sensitif terhadap asumsi distribusi dan kurang responsif terhadap optimisasi parameter, sehingga lebih cocok digunakan sebagai baseline model daripada solusi utama dalam kasus ini.
   
 ## Evaluation
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\Large&space;\text{Accuracy}&space;=&space;\frac{\text{Jumlah&space;prediksi&space;benar}}{\text{Total&space;seluruh&space;prediksi}}" title="Accuracy Formula" />
+</p>
 
 
 ## Referensi
