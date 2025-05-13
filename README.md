@@ -420,9 +420,12 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    Naive Bayes memberikan performa awal yang cukup stabil namun tidak meningkat signifikan setelah tuning. Ini menunjukkan bahwa model ini relatif sensitif terhadap asumsi distribusi dan kurang responsif terhadap optimisasi parameter, sehingga lebih cocok digunakan sebagai baseline model daripada solusi utama dalam kasus ini.
   
 ## Evaluation
+
+helo
 <p align="center">
-  <img src="https://latex.codecogs.com/svg.image?\Large&space;\text{Accuracy}&space;=&space;\frac{\text{Jumlah&space;prediksi&space;benar}}{\text{Total&space;seluruh&space;prediksi}}" title="Accuracy Formula" />
+  <img src="https://latex.codecogs.com/svg.image?\dpi{120}&space;\Large&space;\textcolor{blue}{Accuracy}&space;=&space;\frac{\textcolor{green}{\text{Jumlah&space;prediksi&space;benar}}}{\textcolor{red}{\text{Total&space;seluruh&space;prediksi}}}" title="Accuracy Formula" />
 </p>
+
 
 
 ## Referensi
