@@ -420,17 +420,74 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    Naive Bayes memberikan performa awal yang cukup stabil namun tidak meningkat signifikan setelah tuning. Ini menunjukkan bahwa model ini relatif sensitif terhadap asumsi distribusi dan kurang responsif terhadap optimisasi parameter, sehingga lebih cocok digunakan sebagai baseline model daripada solusi utama dalam kasus ini.
   
 ## Evaluation
+Proyek ini berfokus pada _predictive analytics_ untuk kasus klasifikasi, **metrik utama yang digunakan adalah akurasi**. Akurasi didefinisikan sebagai:
 
-helo
 <p align="center">
-  <img src="https://latex.codecogs.com/svg.image?\dpi{120}&space;\Large&space;\textcolor{blue}{Accuracy}&space;=&space;\frac{\textcolor{green}{\text{Jumlah&space;prediksi&space;benar}}}{\textcolor{red}{\text{Total&space;seluruh&space;prediksi}}}" title="Accuracy Formula" />
+  <img src="https://latex.codecogs.com/svg.image?\Large&space;\text{Accuracy}&space;=&space;\frac{\text{Jumlah&space;prediksi&space;benar}}{\text{Total&space;seluruh&space;prediksi}}" title="Accuracy Formula" />
 </p>
 
+Akurasi merupakan metrik yang cocok digunakan ketika distribusi kelas cukup seimbang dan tujuan utamanya adalah mengukur seberapa sering model memberikan prediksi yang benar. Dalam konteks ini (prediksi penyakit kanker), distribusi kelas sudah diseimbangkan dengan metode oversampling (SMOTE), sehingga akurasi menjadi metrik yang relevan dan dapat diandalkan.
 
+### Hasil Evaluasi Model
+Evaluasi dilakukan terhadap lima model klasifikasi baik sebelum maupun sesudah proses hyperparameter tuning, dan hasilnya dirangkum dalam bentuk tabel dan grafik berikut:
+
+**Tabel Perbandingan Akurasi**
+| Model         | Accuracy Before Tuning | Accuracy After Tuning |
+| ------------- | ---------------------- | --------------------- |
+| Extra Trees   | 80.55%                 | 80.73%                |
+| Random Forest | 79.63%                 | 81.28%                |
+| KNN           | 70.83%                 | 78.17%                |
+| SVC           | 68.26%                 | 81.65%                |
+| Naive Bayes   | 75.78%                 | 75.60%                |
+
+**Visualisasi Grafik Akurasi**
+Grafik di bawah ini menunjukkan perbandingan akurasi dari setiap model sebelum dan sesudah tuning:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2975389d-7336-4647-ae26-ba34cb99761c" alt="Gambar 8. Model Accuracy Chart" width="500"/>
+</p>
+
+<p align="center"><strong>Gambar 8.</strong> Model Accuracy Chart</p>
+
+Dari grafik, dapat dilihat bahwa hampir semua model mengalami peningkatan akurasi setelah tuning, kecuali Naive Bayes yang mengalami sedikit penurunan.
+
+### Analisis dan Interpretasi
+- Model dengan peningkatan terbesar setelah tuning:
+  - SVC (Support Vector Classifier) meningkat dari 68.26% menjadi 81.65% (+13.39 poin)
+  - KNN meningkat dari 70.83% menjadi 78.17% (+7.34 poin)
+
+- Model dengan performa tertinggi setelah tuning:
+  - SVC: 81.65%
+  - Random Forest: 81.28%
+
+- Model dengan penurunan performa setelah tuning:
+  - Naive Bayes mengalami penurunan dari 75.78% menjadi 75.60%
+
+- Model yang konsisten dan stabil:
+  - Extra Trees mempertahankan performa tinggi (sekitar 80.7%) dengan hanya sedikit perubahan setelah tuning.
+
+### Kesimpulan Akhir
+Berdasarkan hasil evaluasi:
+- **Support Vector Classifier (SVC)** menjadi **model terbaik** dalam proyek ini dengan akurasi tertinggi **81.65%** setelah tuning. Peningkatan performa SVC menunjukkan bahwa model ini sangat sensitif terhadap pemilihan parameter dan dapat memberikan hasil optimal setelah tuning.
+- **Random Forest** juga menunjukkan performa yang sangat baik, menjadi alternatif terbaik kedua dengan akurasi **81.28%** dan stabilitas yang tinggi.
+- **Naive Bayes**, meskipun cepat dan sederhana, tidak menunjukkan peningkatan yang berarti dan justru mengalami penurunan setelah tuning. Ini menunjukkan keterbatasan model dalam menangani data dengan korelasi antar fitur.
+
+Dengan mempertimbangkan aspek performa, stabilitas, dan peningkatan setelah tuning, **SVC dipilih sebagai model klasifikasi terbaik** untuk dataset ini. Namun, **Random Forest** tetap menjadi pilihan yang solid jika dibutuhkan model dengan interpretabilitas dan kestabilan lebih tinggi.
 
 ## Referensi
-
-
+[1]
+[2]
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+[9]
+[10]
+[11]
+[12]
+[13]
 
 
 
