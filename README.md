@@ -237,9 +237,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 2. Hyperparameter Tuning
 
-   Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold.
- 
-   Hasil evaluasi model setelah tuning:
+   Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
    - Akurasi Training: 89.99%
    - Akurasi Testing: 80.73%
 
@@ -261,6 +259,48 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    
    Model Extra Trees menunjukkan performa yang baik dengan hasil akurasi mendekati 81% pada data testing. Meskipun tuning menghasilkan akurasi training yang lebih tinggi, peningkatan performa testing tidak signifikan. Oleh karena itu, penting untuk membandingkan model ini dengan algoritma lain sebelum menentukan model terbaik.
 
+
+### Random Forest
+**Random Forest** adalah algoritma ensemble machine learning berbasis pohon keputusan yang digunakan untuk tugas klasifikasi maupun regresi. Algoritma ini bekerja dengan membangun sejumlah pohon keputusan (decision trees) selama proses pelatihan, lalu menggabungkan hasil prediksi dari setiap pohon. Dalam kasus klasifikasi, prediksi akhir ditentukan berdasarkan voting mayoritas dari seluruh pohon. Pendekatan ini secara efektif mengurangi risiko overfitting yang sering terjadi pada model pohon tunggal serta meningkatkan kemampuan generalisasi model. Dengan menyatukan banyak pohon yang relatif tidak berkorelasi, Random Forest mampu menghasilkan prediksi yang lebih stabil dan akurat[[11](https://hostjournals.com/jimat/article/view/473/289)].
+
+**Tahapan Pemodelan**
+1. Baseline Model
+   
+   Model awal dibuat menggunakan parameter default dengan sedikit penyesuaian:
+   - `n_estimators = 50`: Jumlah pohon dalam hutan.
+   - `max_depth = 5`: Kedalaman maksimum pohon.
+   - `max_features = 'sqrt'`: Fitur yang dipilih secara acak untuk split pada setiap node.
+
+   Hasil evaluasi model:
+   - Akurasi Training: 85.19%
+   - Akurasi Testing: 79.63%
+   Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
+
+2. Hyperparameter Tuning
+
+   Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
+   - Akurasi Training: 93.62%
+   - Akurasi Testing: 81.28%
+
+3. Perbandingan Kinerja
+   | Model                    | Akurasi Training | Akurasi Testing |
+   | ------------------------ | ---------------- | --------------- |
+   | Random Forest (Baseline) | 85.19%           | 79.63%          |
+   | Random Forest (Tuned)    | 93.62%           | 81.28%          |
+
+    
+   Model hasil tuning memberikan peningkatan akurasi pada data testing sebesar +1.65%, sekaligus menunjukkan peningkatan yang signifikan pada data training.
+
+4. Analisis Kelebihan & Kekurangan
+   | Aspek          | Penjelasan                                                                                                                                                                                    |
+   | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Kelebihan**  | - Mengurangi overfitting dibandingkan decision tree tunggal. <br> - Dapat menangani data dengan fitur yang banyak. <br> - Cukup stabil terhadap noise.                                        |
+   | **Kekurangan** | - Proses pelatihan dan prediksi relatif lambat untuk dataset besar. <br> - Interpretasi hasil model lebih sulit. <br> - Rentan terhadap overfitting jika parameter tidak diatur dengan tepat. |
+
+5. Kesimpulan Sementara
+   
+   Random Forest menunjukkan performa yang cukup baik dan stabil. Setelah tuning, terjadi peningkatan akurasi testing dari 79.63% menjadi 81.28%. Hal ini menunjukkan bahwa model dapat lebih baik dalam melakukan generalisasi terhadap data baru setelah dilakukan penyetelan parameter.
+   
 ## Evaluation
 
 
