@@ -117,24 +117,13 @@ Tahap *Exploratory Data Analysis (EDA)* dilakukan untuk memahami karakteristik d
 - Mendeteksi nilai pencilan (*outliers*).
 - Mengatasi ketidakseimbangan kelas pada label target.
 
-1. Univariate Analysis
-# 📊 Exploratory Data Analysis (EDA)
-
-Tahap *Exploratory Data Analysis (EDA)* dilakukan untuk memahami karakteristik data secara menyeluruh sebelum memasuki proses *data preprocessing* dan pemodelan. Proses ini bertujuan untuk:
-
-- Mengetahui distribusi data dan proporsi target.
-- Mengidentifikasi hubungan antar fitur.
-- Mendeteksi nilai pencilan (*outliers*).
-- Mengatasi ketidakseimbangan kelas pada label target.
-
 ---
-
-## 🔎 1. Univariate Analysis
+1. Univariate Analysis
 Pie chart di bawah menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan non-kanker (`0`).
 ![Gambar 1. Pie-Chart Cancer & Non-Cancer](https://github.com/user-attachments/assets/4383e96a-86e6-4101-9f3d-0f72583c02aa)
 
 
-**Keterangan Gambar 1**  
+**Gambar 1**
 Sebanyak **557 pasien (37.1%)** terdiagnosis kanker (warna pink), sedangkan **943 pasien (62.9%)** tidak terdiagnosis kanker (warna biru). Visualisasi ini menunjukkan adanya ketidakseimbangan data pada label target.
 
 ---
