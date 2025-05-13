@@ -135,33 +135,29 @@ Pie chart di atas menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan
 <p align="center"><strong>Gambar 2.</strong> Histogram Fitur Numerik</p>
 
 Histogram digunakan untuk melihat distribusi dari seluruh fitur numerik. Sebagian besar fitur menunjukkan distribusi yang tidak simetris, dengan beberapa fitur memiliki penyebaran yang sempit dan lainnya menunjukkan kemungkinan adanya outlier. Analisis ini membantu menentukan perlunya transformasi data atau penanganan nilai ekstrim.
----
 
+---
 2. Multivariate Analysis
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0710c837-434c-44a0-af84-598276949b4a" alt="Gambar 3. Pairplot Diagnosis terhadap Fitur" width="500"/>
+</p>
 
-### 🧪 Hubungan Antar Variabel (Pairplot)
+<p align="center"><strong>Gambar 3.</strong> Pairplot Diagnosis terhadap Fitur</p>
 
-Visualisasi berikut adalah *pairplot* yang memperlihatkan hubungan antar fitur berdasarkan label diagnosis.
+Pairplot memberikan gambaran hubungan antar fitur berdasarkan label diagnosis. Warna berbeda menunjukkan kategori kanker dan non-kanker. Beberapa fitur menunjukkan pemisahan yang cukup jelas antar kelas, yang menjadi indikasi baik bahwa fitur-fitur ini berpotensi kuat untuk pemodelan prediktif.
 
-![Gambar 3. Pairplot Diagnosis](insert_pairplot_path_here)
 
-**Keterangan Gambar 3**  
-Pairplot ini membantu mengidentifikasi fitur-fitur yang memiliki pola pemisahan yang jelas antara pasien kanker dan non-kanker. Misalnya, fitur seperti `radius_mean`, `perimeter_mean`, dan `area_mean` menunjukkan clustering yang berbeda antara dua kelas tersebut.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6dfe8b5c-192b-47e0-9550-6ec230cc42eb" alt="Gambar 4. Heatmap Korelasi Antar Fitur" width="500"/>
+</p>
 
----
+<p align="center"><strong>Gambar 4.</strong> Heatmap Korelasi Antar Fitur</p>
 
-### 🔥 Korelasi Antar Fitur
-
-Matriks korelasi membantu melihat hubungan linier antar fitur numerik.
-
-![Gambar 4. Heatmap Korelasi](insert_heatmap_path_here)
-
-**Keterangan Gambar 4**  
 Warna merah menunjukkan korelasi positif tinggi, sedangkan biru menunjukkan korelasi negatif. Terlihat bahwa fitur-fitur seperti `radius_mean`, `perimeter_mean`, dan `area_mean` sangat berkorelasi satu sama lain. Informasi ini berguna dalam pemilihan fitur atau teknik reduksi dimensi.
 
 ---
 
-## ⚠️ 3. Deteksi & Penanganan Outlier
+3. Outlier Detection and Handling
 
 ### 📦 Box Plot Sebelum & Sesudah Penanganan Outlier
 
