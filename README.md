@@ -118,43 +118,26 @@ Tahap *Exploratory Data Analysis (EDA)* dilakukan untuk memahami karakteristik d
 - Mengatasi ketidakseimbangan kelas pada label target.
 
 ---
-1. Univariate Analysis
-Pie chart di bawah menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan non-kanker (`0`).
-![Gambar 1. Pie-Chart Cancer & Non-Cancer](https://github.com/user-attachments/assets/4383e96a-86e6-4101-9f3d-0f72583c02aa)
-
-
-**Gambar 1**
-Sebanyak **557 pasien (37.1%)** terdiagnosis kanker (warna pink), sedangkan **943 pasien (62.9%)** tidak terdiagnosis kanker (warna biru). Visualisasi ini menunjukkan adanya ketidakseimbangan data pada label target.
-
-
-
- Tesss
 1. Univariate Analysis  
-Pie chart di bawah menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan non-kanker (`0`).
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/4383e96a-86e6-4101-9f3d-0f72583c02aa" alt="Gambar 1. Pie-Chart Cancer & Non-Cancer" width="500"/>
 </p>
 
-<p align="center"><strong>Gambar 1.</strong> Pie-Chart Cancer & Non-Cancer</p>
+<p align="center"><strong>Gambar 1.</strong> Pie-Chart Kanker & Kanker</p>
 
-Sebanyak <strong>557 pasien (37.1%)</strong> terdiagnosis kanker (warna pink), sedangkan <strong>943 pasien (62.9%)</strong> tidak terdiagnosis kanker (warna biru).  
-Visualisasi ini menunjukkan adanya ketidakseimbangan data pada label target.
+Pie chart di atas menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan non-kanker (`0`). Sebanyak <strong>557 pasien (37.1%)</strong> terdiagnosis kanker (warna pink), sedangkan <strong>943 pasien (62.9%)</strong> tidak terdiagnosis kanker (warna biru).  Informasi ini penting untuk mengetahui apakah kelas target seimbang atau tidak, karena ketidakseimbangan dapat menyebabkan bias dalam model klasifikasi.
 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5cd2cb5e-f1c3-4049-81e8-afe16b3d869a" alt="Gambar 2. Histogram Fitur Numerik" width="500"/>
+</p>
+
+<p align="center"><strong>Gambar 2.</strong> Histogram Fitur Numerik</p>
+
+Histogram digunakan untuk melihat distribusi dari seluruh fitur numerik. Sebagian besar fitur menunjukkan distribusi yang tidak simetris, dengan beberapa fitur memiliki penyebaran yang sempit dan lainnya menunjukkan kemungkinan adanya outlier. Analisis ini membantu menentukan perlunya transformasi data atau penanganan nilai ekstrim.
 ---
 
-### 📊 Distribusi Fitur Numerik
-
-Histogram berikut memperlihatkan sebaran nilai dari setiap fitur numerik dalam dataset:
-
-![Gambar 2. Histogram Setiap Fitur](insert_histogram_path_here)
-
-**Keterangan Gambar 2**  
-Histogram ini menunjukkan variasi skala dan distribusi dari masing-masing fitur. Beberapa fitur menunjukkan distribusi yang condong ke kanan atau kiri (*skewed*), dan beberapa fitur menunjukkan kemungkinan adanya nilai pencilan.
-
----
-
-## 🔍 2. Multivariate Analysis
+2. Multivariate Analysis
 
 ### 🧪 Hubungan Antar Variabel (Pairplot)
 
