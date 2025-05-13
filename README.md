@@ -342,7 +342,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 
 ### Support Vector Classifier
-**Support Vector Classifier (SVC)** merupakan algoritma klasifikasi yang termasuk dalam keluarga Support Vector Machine (SVM). Algoritma ini bekerja dengan mencari hyperplane terbaik yang dapat memisahkan kelas-kelas dalam ruang berdimensi tinggi. SVC efektif digunakan untuk masalah klasifikasi linier maupun non-linier, dan dikenal mampu menghasilkan margin klasifikasi maksimum. Dengan kernel trick, SVC dapat menangani data non-linier dengan memetakan data ke ruang fitur berdimensi lebih tinggi [[12](https://scikit-learn.org/stable/modules/svm.html)].
+**Support Vector Classifier (SVC)** merupakan algoritma klasifikasi yang termasuk dalam keluarga Support Vector Machine (SVM). Algoritma ini bekerja dengan mencari hyperplane terbaik yang dapat memisahkan kelas-kelas dalam ruang berdimensi tinggi. SVC efektif digunakan untuk masalah klasifikasi linier maupun non-linier, dan dikenal mampu menghasilkan margin klasifikasi maksimum. Dengan kernel trick, SVC dapat menangani data non-linier dengan memetakan data ke ruang fitur berdimensi lebih tinggi [[13](https://scikit-learn.org/stable/modules/svm.html)].
 
 **Tahapan Pemodelan**
 1. Baseline Model
@@ -383,7 +383,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 
 ### Naive Bayes
-**Naive Bayes** adalah algoritma klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur. Model ini menghitung probabilitas setiap kelas berdasarkan distribusi fitur dan memilih kelas dengan probabilitas tertinggi. Salah satu variannya, Gaussian Naive Bayes, digunakan ketika fitur mengikuti distribusi normal. Naive Bayes dikenal cepat dan efisien, terutama untuk data berdimensi tinggi dan masalah klasifikasi teks, meskipun performanya bisa menurun ketika asumsi independensi tidak terpenuhi [[13](https://scikit-learn.org/stable/modules/naive_bayes.html)].
+**Naive Bayes** adalah algoritma klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur. Model ini menghitung probabilitas setiap kelas berdasarkan distribusi fitur dan memilih kelas dengan probabilitas tertinggi. Salah satu variannya, Gaussian Naive Bayes, digunakan ketika fitur mengikuti distribusi normal. Naive Bayes dikenal cepat dan efisien, terutama untuk data berdimensi tinggi dan masalah klasifikasi teks, meskipun performanya bisa menurun ketika asumsi independensi tidak terpenuhi [[14](https://scikit-learn.org/stable/modules/naive_bayes.html)].
 
 **Tahapan Pemodelan**
 1. Baseline Model
@@ -441,6 +441,7 @@ Evaluasi dilakukan terhadap lima model klasifikasi baik sebelum maupun sesudah p
 | Naive Bayes   | 75.78%                 | 75.60%                |
 
 **Visualisasi Grafik Akurasi**
+
 Grafik di bawah ini menunjukkan perbandingan akurasi dari setiap model sebelum dan sesudah tuning:
 
 <p align="center">
@@ -476,18 +477,32 @@ Dengan mempertimbangkan aspek performa, stabilitas, dan peningkatan setelah tuni
 
 ## Referensi
 [1]
+
 [2]
+
 [3]
+
 [4]
+
 [5]
+
 [6]
+
 [7]
+
 [8]
+
 [9]
+
 [10]
+
 [11]
+
 [12]
+
 [13]
+
+[14]
 
 
 
