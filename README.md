@@ -217,7 +217,63 @@ Standarisasi dilakukan untuk memastikan bahwa seluruh fitur numerik berada dalam
   - Menghindari dominasi fitur dengan nilai besar terhadap model.
 
 ## Modeling
+Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menyelesaikan permasalahan klasifikasi diagnosis. Beberapa algoritma diuji dan dibandingkan, dimulai dari Extra Trees Classifier, Random Forest, KNN (K-Nearest Neighbor), Support Vector Classifier, dan Naive Bayes. Pemodelan dilakukan secara bertahap, dimulai dari baseline model (tanpa tuning) hingga proses hyperparameter tuning untuk meningkatkan performa model.
 
+### Extra Trees Classifier
+**Extra Trees Classifier** (Extremely Randomized Trees) merupakan algoritma *ensemble learning* berbasis pohon keputusan yang bekerja dengan membangun banyak *decision tree* dan menggabungkan hasilnya untuk menghasilkan prediksi yang lebih akurat. Algoritma ini sangat mirip dengan **Random Forest**, namun memiliki tingkat randomisasi yang lebih tinggi dalam proses pemisahan node [[9](https://dspace.uii.ac.id/bitstream/handle/123456789/48182/19522292.pdf?sequence=1&isAllowed=y)]. Perbedaannya terletak pada cara pemilihan *split point*, jika Random Forest mencari pemisahan terbaik berdasarkan kriteria tertentu, Extra Trees memilih titik pemisahan secara acak untuk setiap fitur, lalu memilih yang terbaik dari pilihan acak tersebut. Pendekatan ini membuat proses pelatihan menjadi lebih cepat dan mampu mengurangi *variance*, serta efektif dalam menangani fitur dengan skala berbeda tanpa memerlukan normalisasi data [[10](https://dspace.uii.ac.id/bitstream/handle/123456789/54959/20523191.pdf?sequence=1&isAllowed=y)].
+
+**Tahapan Pemodelan**
+1. Baseline Model
+   Model awal dibuat menggunakan parameter default dengan sedikit penyesuaian:
+   ExtraTreesClassifier(n_estimators=50, max_depth=5, max_features='sqrt')
+   - `n_estimators = 50`: Jumlah pohon yang digunakan dalam ensemble.
+   - `max_depth = 5`: Kedalaman maksimum dari setiap pohon.
+   - `max_features = 'sqrt'`: Jumlah fitur yang dipertimbangkan saat membagi setiap node.
+
+   Hasil evaluasi model:
+   - Akurasi Training: 82.82%
+   - Akurasi Testing: 80.55%
+   Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
+
+2. Hyperparameter Tuning
+   Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold.
+   Parameter yang diuji:
+   param_grid = {
+       'n_estimators': [50, 100, 200, 300],
+       'max_features': ['sqrt', 'log2'],
+       'max_depth': [5, 6, 7, 8],
+       'criterion': ['gini', 'entropy']
+   }
+   
+   Model terbaik ditemukan dengan konfigurasi berikut:
+   ExtraTreesClassifier(
+       n_estimators=300,
+       max_depth=8,
+       max_features='log2',
+       criterion='entropy'
+   )
+
+
+   Hasil evaluasi model setelah tuning:
+   - Akurasi Training: 89.99%
+   - Akurasi Testing: 80.73%
+
+3. Perbandingan Kinerja
+   | Model                  | Akurasi Training | Akurasi Testing |
+   | ---------------------- | ---------------- | --------------- |
+   | Extra Trees (Baseline) | 82.82%           | 80.55%          |
+   | Extra Trees (Tuned)    | 89.99%           | 80.73%          |
+    
+   Meskipun akurasi training meningkat secara signifikan, akurasi testing hanya sedikit meningkat (dari 80.55% menjadi 80.73%). Hal ini mengindikasikan bahwa model tuning lebih fit terhadap data pelatihan, tetapi tidak memberikan perbedaan besar terhadap kemampuan generalisasi.
+
+4. Analisis Kelebihan & Kekurangan
+   | Aspek          | Penjelasan                                                                                                                                                |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Kelebihan**  | - Cepat dilatih pada dataset besar.<br>- Tahan terhadap overfitting dibanding pohon tunggal.<br>- Tidak sensitif terhadap outlier dan fitur tidak relevan. |
+| **Kekurangan** | - Interpretabilitas rendah.<br>- Performa bisa kurang stabil jika jumlah pohon terlalu kecil.<br>- Bisa overfitting jika tidak diatur kedalaman pohonnya.  |
+
+5. Kesimpulan Sementara
+   Model Extra Trees menunjukkan performa yang baik dengan hasil akurasi mendekati 81% pada data testing. Meskipun tuning menghasilkan akurasi training yang lebih tinggi, peningkatan performa testing tidak signifikan. Oleh karena itu, penting untuk membandingkan model ini dengan algoritma lain sebelum menentukan model terbaik.
 
 ## Evaluation
 
