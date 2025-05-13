@@ -110,8 +110,97 @@ Contoh data:
 | `Diagnosis`        | Integer   | Label target diagnosis. `0` = tidak terdiagnosis kanker, `1` = terdiagnosis kanker.         |
 
 ### Exploratory Data Analysis (EDA)
+Tahap *Exploratory Data Analysis (EDA)* dilakukan untuk memahami karakteristik data secara menyeluruh sebelum memasuki proses *data preprocessing* dan pemodelan. Proses ini bertujuan untuk:
 
-## 📦 Project Structure
+- Mengetahui distribusi data dan proporsi target.
+- Mengidentifikasi hubungan antar fitur.
+- Mendeteksi nilai pencilan (*outliers*).
+- Mengatasi ketidakseimbangan kelas pada label target.
+
+1. Univariate Analysis
+# 📊 Exploratory Data Analysis (EDA)
+
+Tahap *Exploratory Data Analysis (EDA)* dilakukan untuk memahami karakteristik data secara menyeluruh sebelum memasuki proses *data preprocessing* dan pemodelan. Proses ini bertujuan untuk:
+
+- Mengetahui distribusi data dan proporsi target.
+- Mengidentifikasi hubungan antar fitur.
+- Mendeteksi nilai pencilan (*outliers*).
+- Mengatasi ketidakseimbangan kelas pada label target.
+
+---
+
+## 🔎 1. Univariate Analysis
+Pie chart di bawah menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan non-kanker (`0`).
+![Gambar 1. Pie-Chart Cancer & Non-Cancer](https://github.com/user-attachments/assets/4383e96a-86e6-4101-9f3d-0f72583c02aa)
+
+
+**Keterangan Gambar 1**  
+Sebanyak **557 pasien (37.1%)** terdiagnosis kanker (warna pink), sedangkan **943 pasien (62.9%)** tidak terdiagnosis kanker (warna biru). Visualisasi ini menunjukkan adanya ketidakseimbangan data pada label target.
+
+---
+
+### 📊 Distribusi Fitur Numerik
+
+Histogram berikut memperlihatkan sebaran nilai dari setiap fitur numerik dalam dataset:
+
+![Gambar 2. Histogram Setiap Fitur](insert_histogram_path_here)
+
+**Keterangan Gambar 2**  
+Histogram ini menunjukkan variasi skala dan distribusi dari masing-masing fitur. Beberapa fitur menunjukkan distribusi yang condong ke kanan atau kiri (*skewed*), dan beberapa fitur menunjukkan kemungkinan adanya nilai pencilan.
+
+---
+
+## 🔍 2. Multivariate Analysis
+
+### 🧪 Hubungan Antar Variabel (Pairplot)
+
+Visualisasi berikut adalah *pairplot* yang memperlihatkan hubungan antar fitur berdasarkan label diagnosis.
+
+![Gambar 3. Pairplot Diagnosis](insert_pairplot_path_here)
+
+**Keterangan Gambar 3**  
+Pairplot ini membantu mengidentifikasi fitur-fitur yang memiliki pola pemisahan yang jelas antara pasien kanker dan non-kanker. Misalnya, fitur seperti `radius_mean`, `perimeter_mean`, dan `area_mean` menunjukkan clustering yang berbeda antara dua kelas tersebut.
+
+---
+
+### 🔥 Korelasi Antar Fitur
+
+Matriks korelasi membantu melihat hubungan linier antar fitur numerik.
+
+![Gambar 4. Heatmap Korelasi](insert_heatmap_path_here)
+
+**Keterangan Gambar 4**  
+Warna merah menunjukkan korelasi positif tinggi, sedangkan biru menunjukkan korelasi negatif. Terlihat bahwa fitur-fitur seperti `radius_mean`, `perimeter_mean`, dan `area_mean` sangat berkorelasi satu sama lain. Informasi ini berguna dalam pemilihan fitur atau teknik reduksi dimensi.
+
+---
+
+## ⚠️ 3. Deteksi & Penanganan Outlier
+
+### 📦 Box Plot Sebelum & Sesudah Penanganan Outlier
+
+Visualisasi berikut menunjukkan distribusi nilai dari setiap fitur sebelum dan sesudah outlier dihilangkan.
+
+#### Sebelum:
+![Gambar 5. Boxplot Sebelum Outlier](insert_boxplot_before_path_here)
+
+#### Sesudah:
+![Gambar 6. Boxplot Setelah Outlier](insert_boxplot_after_path_here)
+
+**Keterangan Gambar 5 & 6**  
+Boxplot menunjukkan adanya outlier pada beberapa fitur. Setelah dilakukan penanganan menggunakan metode IQR (Interquartile Range), sebaran data menjadi lebih bersih dan normal.
+
+---
+
+## ⚖️ 4. Penanganan Ketidakseimbangan Kelas
+
+### 🔁 Oversampling dengan SMOTE
+
+Distribusi kelas setelah diterapkan teknik *oversampling* menggunakan SMOTE:
+
+```plaintext
+Distribusi kelas setelah oversampling: Counter({0: 907, 1: 907})
+
+2. 
 
 
 
