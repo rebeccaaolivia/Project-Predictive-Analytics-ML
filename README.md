@@ -49,9 +49,70 @@ Untuk mencapai tujuan proyek ini, langkah-langkah yang dilakukan meliputi:
   - **Random Forest**: Random Forest adalah algoritma ensemble yang terdiri dari banyak pohon keputusan (_decision trees_) yang dibangun dari subset acak data dan fitur. Setiap pohon membuat prediksi secara mandiri, kemudian hasil akhirnya ditentukan melalui voting mayoritas. Pendekatan ini meningkatkan akurasi dan kestabilan model serta mampu mengurangi risiko overfitting yang kerap terjadi pada model _decision tree_ tunggal [[5](https://jidt.org/jidt/article/view/393/205)].
   - **Support Vector Machine (SVM)**: SVM merupakan algoritma supervised learning yang berfungsi untuk memisahkan data ke dalam dua kelas atau lebih dengan mencari hyperplane terbaik yang memaksimalkan margin antar kelas. Metode ini dapat bekerja pada ruang data berdimensi tinggi dan juga mampu menangani klasifikasi non-linear menggunakan kernel trick, sehingga sangat andal untuk berbagai jenis permasalahan klasifikasi [[6](https://ejournal.poltekharber.ac.id/index.php/informatika/article/view/977/795)].
   - **Naive Bayes**: Naive Bayes adalah metode klasifikasi berbasis probabilitas yang menerapkan Teorema Bayes dengan asumsi independensi antar fitur. Meskipun asumsi ini jarang terpenuhi secara ketat dalam data nyata, algoritma ini terbukti efisien dan cukup akurat dalam berbagai kasus. Kelebihan utama Naive Bayes adalah kesederhanaannya dalam implementasi dan kecepatan dalam melakukan prediksi [[7](https://ojs.stikombanyuwangi.ac.id/index.php/jikom/article/view/280/147)].
-  - **Extra Trees Classifier**: Extra Trees (Extremely Randomized Trees) adalah varian dari Random Forest yang membedakan diri melalui pemilihan split point secara acak saat membangun pohon keputusan. Teknik ini memperkenalkan lebih banyak variasi antar pohon dalam ensemble, sehingga dapat meningkatkan kemampuan generalisasi model dan efisiensi waktu pelatihan. Seperti Random Forest, keputusan akhir diambil berdasarkan hasil agregasi dari seluruh pohon [[8](https://www.ejournal.itn.ac.id/index.php/jati/article/view/8797/4781).
+  - **Extra Trees Classifier**: Extra Trees (Extremely Randomized Trees) adalah varian dari Random Forest yang membedakan diri melalui pemilihan split point secara acak saat membangun pohon keputusan. Teknik ini memperkenalkan lebih banyak variasi antar pohon dalam ensemble, sehingga dapat meningkatkan kemampuan generalisasi model dan efisiensi waktu pelatihan. Seperti Random Forest, keputusan akhir diambil berdasarkan hasil agregasi dari seluruh pohon [[8](https://www.ejournal.itn.ac.id/index.php/jati/article/view/8797/4781)].
 
 ## Data Understanding
+### Gathering Data
+Dataset yang digunakan dalam proyek ini adalah "The Cancer Data V2", yang berisi informasi mengenai karakteristik pasien serta status diagnosis kanker. File dataset diunggah dari penyimpanan lokal ke lingkungan kerja Google Colab dalam format ZIP, kemudian diekstrak dan dibaca menggunakan library pandas.
+
+Proses pengumpulan data dilakukan melalui tiga langkah utama:
+1. Mengunggah file ZIP (The_Cancer_data_1500_V2.csv.zip) dari komputer lokal ke Google Colab.
+2. Mengekstrak isi file ZIP untuk mendapatkan file CSV.
+3. Membaca file CSV ke dalam bentuk DataFrame agar dapat dianalisis lebih lanjut.
+
+Dataset ini berisi 1.500 entri dan 9 fitur yang merepresentasikan karakteristik pasien, seperti usia, jenis kelamin, indeks massa tubuh (IMT), kebiasaan merokok, risiko genetik, tingkat aktivitas fisik, konsumsi alkohol mingguan, riwayat pribadi terhadap kanker, serta status diagnosis.
+
+### Data Assesing and Data Cleaning
+Informasi Datasets
+
+| Jenis       | Keterangan                                                                                                                                      |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Title**   | 🩺📊 Cancer Prediction Dataset 🌟🔬                                                                                                               |
+| **Source**  | [Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/cancer-prediction-dataset)                                                              |
+| **Maintainer** | [Rabie El Kharoua](https://www.kaggle.com/rabieelkharoua)                                                                                     |
+| **License** | Attribution 4.0 International                                                                                                                   |
+| **Visibility** | Publik                                                                                                                                       |
+| **Tags**    | Earth and Nature, Cancer, Tabular, Health Conditions, Binary Classification                                                                     |
+| **Usability** | 10.00                                                                                                                                         |
+
+> Klik pada nama **Kaggle** untuk langsung menuju ke dataset.
+> Klik pada nama **Rabie El Kharoua** untuk langsung menuju ke user pemilik datasey
+
+**Dataset Info**
+- Format: CSV (Comma-Separated Values)
+- Jumlah data: **1.500 baris** dan **9 kolom**
+- Semua kolom memiliki **1500 nilai non-null** (tidak ada missing values)
+- Tipe data:
+  - `int64` (6 kolom): untuk data diskrit (contoh: usia, biner)
+  - `float64` (3 kolom): untuk data kontinu (contoh: BMI, aktivitas fisik)
+
+Contoh data:
+| Age | Gender | BMI       | Smoking | GeneticRisk | PhysicalActivity | AlcoholIntake | CancerHistory | Diagnosis |
+|-----|--------|-----------|---------|--------------|------------------|----------------|----------------|------------|
+| 58  | 1      | 16.08     | 0       | 1            | 8.15             | 4.15           | 1              | 1          |
+| 71  | 0      | 30.83     | 0       | 1            | 9.36             | 3.52           | 0              | 0          |
+| 48  | 1      | 38.78     | 0       | 2            | 5.14             | 4.73           | 0              | 1          |
+
+---
+
+**Feature Explanation**
+
+| Feature Name       | Tipe Data | Deskripsi                                                                                  |
+|--------------------|-----------|---------------------------------------------------------------------------------------------|
+| `Age`              | Integer   | Usia pasien dalam tahun. Rentang antara 20 hingga 80 tahun.                                |
+| `Gender`           | Integer   | Jenis kelamin pasien. `0` = laki-laki, `1` = perempuan.                                     |
+| `BMI`              | Float     | Indeks massa tubuh pasien. Nilai berkisar antara 15 – 40.                                   |
+| `Smoking`          | Integer   | Status merokok pasien. `0` = tidak merokok, `1` = merokok.                                  |
+| `GeneticRisk`      | Integer   | Risiko genetik terhadap kanker. `0` = rendah, `1` = sedang, `2` = tinggi.                   |
+| `PhysicalActivity` | Float     | Jam aktivitas fisik per minggu. Rentang 0 – 10 jam/minggu.                                 |
+| `AlcoholIntake`    | Float     | Konsumsi alkohol per minggu. Rentang 0 – 5 satuan/minggu.                                   |
+| `CancerHistory`    | Integer   | Riwayat pribadi terhadap kanker. `0` = tidak ada, `1` = ada.                                |
+| `Diagnosis`        | Integer   | Label target diagnosis. `0` = tidak terdiagnosis kanker, `1` = terdiagnosis kanker.         |
+
+### Exploratory Data Analysis (EDA)
+
+## 📦 Project Structure
+
 
 
 ## Data Preparation
