@@ -126,6 +126,21 @@ Pie chart di bawah menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) da
 **Gambar 1**
 Sebanyak **557 pasien (37.1%)** terdiagnosis kanker (warna pink), sedangkan **943 pasien (62.9%)** tidak terdiagnosis kanker (warna biru). Visualisasi ini menunjukkan adanya ketidakseimbangan data pada label target.
 
+
+
+ Tesss
+1. Univariate Analysis  
+Pie chart di bawah menunjukkan proporsi pasien yang terdiagnosis kanker (`1`) dan non-kanker (`0`).
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4383e96a-86e6-4101-9f3d-0f72583c02aa" alt="Gambar 1. Pie-Chart Cancer & Non-Cancer" width="500"/>
+</p>
+
+<p align="center"><strong>Gambar 1.</strong> Pie-Chart Cancer & Non-Cancer</p>
+
+Sebanyak <strong>557 pasien (37.1%)</strong> terdiagnosis kanker (warna pink), sedangkan <strong>943 pasien (62.9%)</strong> tidak terdiagnosis kanker (warna biru).  
+Visualisasi ini menunjukkan adanya ketidakseimbangan data pada label target.
+
 ---
 
 ### 📊 Distribusi Fitur Numerik
