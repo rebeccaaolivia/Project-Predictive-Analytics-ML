@@ -155,8 +155,10 @@ Pairplot memberikan gambaran hubungan antar fitur berdasarkan label diagnosis. W
 
 Warna merah menunjukkan korelasi positif tinggi, sedangkan biru menunjukkan korelasi negatif. Terlihat bahwa fitur-fitur seperti `radius_mean`, `perimeter_mean`, dan `area_mean` sangat berkorelasi satu sama lain. Informasi ini berguna dalam pemilihan fitur atau teknik reduksi dimensi.
 
----
-3. Outlier Detection and Handling
+## Data Preparation
+Pada tahap ini, dilakukan beberapa teknik persiapan data agar model machine learning dapat dilatih dengan optimal. Teknik yang digunakan mencakup **Data Splitting** dan **Standardization**, yang dijelaskan secara berurutan sesuai implementasi dalam notebook.
+
+1. Outlier Detection and Handling
 <p align="center">
   <img src="https://github.com/user-attachments/assets/39281b8e-2fa5-44df-858d-814c56551339" alt="Gambar 5. Boxplot Sebelum Penanganan Outlier" width="500"/>
 </p>
@@ -176,7 +178,7 @@ Setelah proses deteksi dan pembersihan menggunakan metode Interquartile Range (I
 Fitur-fitur setelah penanganan menunjukkan distribusi yang lebih stabil tanpa banyak nilai pencilan ekstrem.
 
 ---
-4. Class Imbalance & SMOTE
+2. Class Imbalance & SMOTE
 
 Distribusi awal kelas target:
 - `Kelas 0` (non-kanker): 907 data
@@ -197,8 +199,6 @@ Gambar ini membandingkan jumlah data antar kelas:
 - Sebelum SMOTE: kelas kanker (merah) jauh lebih sedikit dibanding non-kanker (hijau),
 - Setelah SMOTE: distribusi menjadi seimbang (907 data per kelas), sehingga model dapat dilatih dengan adil dan tidak bias.
 
-## Data Preparation
-Pada tahap ini, dilakukan beberapa teknik persiapan data agar model machine learning dapat dilatih dengan optimal. Teknik yang digunakan mencakup **Data Splitting** dan **Standardization**, yang dijelaskan secara berurutan sesuai implementasi dalam notebook.
 
 ### Data Splitting
 Tahap ini bertujuan untuk membagi data menjadi **data pelatihan (training set)** dan **data pengujian (testing set)**. Pemisahan ini penting agar model dapat diuji pada data yang belum pernah dilihat sebelumnya, guna mengevaluasi kemampuan generalisasinya.
@@ -231,23 +231,23 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    - `max_features = 'sqrt'`: Jumlah fitur yang dipertimbangkan saat membagi setiap node.
 
    Hasil evaluasi model:
-   - Akurasi Training: 82.82%
-   - Akurasi Testing: 80.55%
+   - Akurasi Training: 80.93%
+   - Akurasi Testing: 78.90%
    Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
 
 2. Hyperparameter Tuning
 
    Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
-   - Akurasi Training: 89.99%
-   - Akurasi Testing: 80.73%
+   - Akurasi Training: 90.23%
+   - Akurasi Testing: 80.00%
 
 3. Perbandingan Kinerja
    | Model                  | Akurasi Training | Akurasi Testing |
    | ---------------------- | ---------------- | --------------- |
-   | Extra Trees (Baseline) | 82.82%           | 80.55%          |
-   | Extra Trees (Tuned)    | 89.99%           | 80.73%          |
+   | Extra Trees (Baseline) | 80.93%           | 78.90%          |
+   | Extra Trees (Tuned)    | 90.23%           | 80.00%          |
     
-   Meskipun akurasi training meningkat secara signifikan, akurasi testing hanya sedikit meningkat (dari 80.55% menjadi 80.73%). Hal ini mengindikasikan bahwa model tuning lebih fit terhadap data pelatihan, tetapi tidak memberikan perbedaan besar terhadap kemampuan generalisasi.
+   Meskipun akurasi training meningkat secara signifikan setelah tuning (dari 80.93% menjadi 90.23%), akurasi pada data testing hanya meningkat sedikit, dari 78.90% menjadi 80.00%. Hal ini menunjukkan bahwa model hasil tuning cenderung lebih cocok terhadap data pelatihan (potensi overfitting), tetapi tidak memberikan peningkatan besar dalam kemampuan generalisasi terhadap data baru.
 
 4. Analisis Kelebihan & Kekurangan
    | Aspek          | Penjelasan                                                                                                                                                |
@@ -257,7 +257,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 5. Kesimpulan Sementara
    
-   Model Extra Trees menunjukkan performa yang baik dengan hasil akurasi mendekati 81% pada data testing. Meskipun tuning menghasilkan akurasi training yang lebih tinggi, peningkatan performa testing tidak signifikan. Oleh karena itu, penting untuk membandingkan model ini dengan algoritma lain sebelum menentukan model terbaik.
+   Model Extra Trees menunjukkan performa yang cukup baik dengan akurasi testing mendekati 80%. Meskipun tuning memberikan peningkatan besar pada akurasi training, dampaknya terhadap data testing tidak signifikan. Oleh karena itu, penting untuk melakukan perbandingan dengan model lain seperti Random Forest atau SVC sebelum memutuskan model terbaik untuk digunakan secara final.
 
 
 ### Random Forest
@@ -272,24 +272,24 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    - `max_features = 'sqrt'`: Fitur yang dipilih secara acak untuk split pada setiap node.
 
    Hasil evaluasi model:
-   - Akurasi Training: 85.19%
-   - Akurasi Testing: 79.63%
+   - Akurasi Training: 86.76%
+   - Akurasi Testing: 81.10%
    Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
 
 2. Hyperparameter Tuning
 
    Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
-   - Akurasi Training: 93.62%
-   - Akurasi Testing: 81.28%
+   - Akurasi Training: 93.46%
+   - Akurasi Testing: 84.22%
 
 3. Perbandingan Kinerja
    | Model                    | Akurasi Training | Akurasi Testing |
    | ------------------------ | ---------------- | --------------- |
-   | Random Forest (Baseline) | 85.19%           | 79.63%          |
-   | Random Forest (Tuned)    | 93.62%           | 81.28%          |
+   | Random Forest (Baseline) | 86.76%           | 81.10%          |
+   | Random Forest (Tuned)    | 93.46%           | 84.22%          |
 
-    
-   Model hasil tuning memberikan peningkatan akurasi pada data testing sebesar +1.65%, sekaligus menunjukkan peningkatan yang signifikan pada data training.
+   Setelah dilakukan tuning, akurasi training Random Forest meningkat cukup signifikan dari 86.76% menjadi 93.46%. Akurasi testing juga meningkat dari 81.10% menjadi 84.22%, menandakan bahwa tuning berhasil meningkatkan kemampuan generalisasi model terhadap data baru.
+
 
 4. Analisis Kelebihan & Kekurangan
    | Aspek          | Penjelasan                                                                                                                                                                                    |
@@ -299,7 +299,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 5. Kesimpulan Sementara
    
-   Random Forest menunjukkan performa yang cukup baik dan stabil. Setelah tuning, terjadi peningkatan akurasi testing dari 79.63% menjadi 81.28%. Hal ini menunjukkan bahwa model dapat lebih baik dalam melakukan generalisasi terhadap data baru setelah dilakukan penyetelan parameter.
+   Model Random Forest menunjukkan performa yang sangat baik dengan akurasi testing mencapai 84.22% setelah dilakukan tuning. Peningkatan akurasi training yang signifikan dari 86.76% menjadi 93.46% menunjukkan model lebih fit terhadap data pelatihan. Namun, peningkatan akurasi testing juga cukup berarti, sehingga tuning berhasil memperbaiki kemampuan generalisasi model. Oleh karena itu, Random Forest menjadi kandidat kuat sebagai model terbaik dibandingkan dengan algoritma lain yang diuji.
 
 
 ### KNN (K-Nearest Neighbor)
@@ -312,23 +312,23 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    - `n_neighbors = 5`: Jumlah tetangga terdekat yang digunakan untuk voting kelas.
 
    Hasil evaluasi model:
-   - Akurasi Training: 84.40%
-   - Akurasi Testing: 70.83%
+   - Akurasi Training: 84.24%
+   - Akurasi Testing: 70.64%
    Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
 
 2. Hyperparameter Tuning
 
    Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
    - Akurasi Training: 100.00%
-   - Akurasi Testing: 78.17%
+   - Akurasi Testing: 78.72%
      
 3. Perbandingan Kinerja
    | Model          | Akurasi Training | Akurasi Testing |
    | -------------- | ---------------- | --------------- |
-   | KNN (Baseline) | 84.40%           | 70.83%          |
-   | KNN (Tuned)    | 100.00%          | 78.17%          |
+   | KNN (Baseline) | 84.24%           | 70.64%          |
+   | KNN (Tuned)    | 100.00%          | 78.72%          |
 
-   Model hasil tuning menunjukkan lonjakan akurasi training yang sangat tinggi, namun tetap mengalami peningkatan akurasi testing sebesar +7.34% dibandingkan baseline.
+   Meskipun akurasi training setelah tuning mencapai 100%, akurasi testing meningkat dari 70.64% menjadi 78.72%. Hal ini menunjukkan bahwa tuning membuat model sangat fit terhadap data pelatihan (kemungkinan overfitting), namun ada peningkatan kemampuan generalisasi yang cukup signifikan pada data testing.
 
 4. Analisis Kelebihan & Kekurangan
    | Aspek          | Penjelasan                                                                                                                                                                          |
@@ -338,7 +338,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 5. Kesimpulan Sementara
    
-   KNN memberikan performa yang cukup kompetitif setelah tuning, dengan peningkatan akurasi testing yang signifikan. Namun, peningkatan akurasi training hingga 100% menjadi indikasi potensi overfitting. Oleh karena itu, meskipun performa meningkat, model ini perlu dipertimbangkan dengan hati-hati dalam implementasi nyata.
+   Model KNN menunjukkan peningkatan akurasi testing yang cukup besar setelah tuning, walaupun model tampak mengalami overfitting dengan akurasi training sempurna. Perbaikan ini menandakan bahwa tuning parameter berhasil meningkatkan performa model pada data testing, namun perlu hati-hati terhadap potensi overfitting yang terjadi. Evaluasi lebih lanjut diperlukan untuk memastikan kestabilan model pada data baru.
 
 
 ### Support Vector Classifier
@@ -353,23 +353,24 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    - `random_state=42`: Untuk memastikan reprodusibilitas hasil.
 
    Hasil evaluasi model:
-   - Akurasi Training: 67.22%
+   - Akurasi Training: 68.24%
    - Akurasi Testing: 68.26%
    Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
 
 2. Hyperparameter Tuning
 
    Untuk meningkatkan performa model, dilakukan pencarian parameter terbaik menggunakan **GridSearchCV** dengan validasi silang 5-fold. Hasil evaluasi model setelah tuning:
-   - Akurasi Training: 99.92%
-   - Akurasi Testing: 81.65%
+   - Akurasi Training: 100.00%
+   - Akurasi Testing: 81.10%
 
 3. Perbandingan Kinerja
-   | Model          | Akurasi Training | Akurasi Testing |
-   | -------------- | ---------------- | --------------- |
-   | SVC (Baseline) | 67.22%           | 68.26%          |
-   | SVC (Tuned)    | 99.92%           | 81.65%          |
+   | Model          | Akurasi Training  | Akurasi Testing |
+   | -------------- | ----------------- | --------------- |
+   | SVC (Baseline) | 68.24%            | 68.26%          |
+   | SVC (Tuned)    | 100.00%           | 81.10%          |
 
-   Tuning menghasilkan lonjakan signifikan pada akurasi training dan peningkatan akurasi testing sebesar +13.39% dibandingkan baseline.
+   Setelah tuning, akurasi training naik drastis hingga 100%, menandakan model sangat fit terhadap data pelatihan (overfitting). Namun, akurasi testing juga meningkat signifikan dari 68.26% menjadi 81.10%, menunjukkan bahwa tuning berhasil meningkatkan kemampuan generalisasi model.
+
 
 4. Analisis Kelebihan & Kekurangan                                                                                                                                      
    | Aspek          | Penjelasan                                                                                                                                                          |
@@ -379,7 +380,7 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 5. Kesimpulan Sementara
    
-   Support Vector Classifier menunjukkan peningkatan performa yang signifikan setelah tuning. Namun, akurasi training yang sangat tinggi dapat menjadi indikasi overfitting. Oleh karena itu, model ini layak dipertimbangkan lebih lanjut dengan pengujian tambahan sebelum diimplementasikan secara nyata.
+   Model SVC mengalami peningkatan performa yang paling besar setelah dilakukan tuning hyperparameter. Meskipun ada indikasi overfitting dengan akurasi training sempurna, peningkatan akurasi testing yang cukup signifikan menunjukkan model ini memiliki potensi terbaik untuk prediksi pada data baru. Evaluasi lebih lanjut disarankan untuk mengoptimalkan keseimbangan antara bias dan variance.
 
 
 ### Naive Bayes
@@ -391,23 +392,24 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
    Model awal dibangun dengan parameter default dari `GaussianNB`. Tidak ada parameter khusus yang disetel pada tahap awal.
 
    Hasil evaluasi model:
-   - Akurasi Training: 77.15%
-   - Akurasi Testing: 75.78%
+   - Akurasi Training: 78.01%
+   - Akurasi Testing: 76.88%
    Model ini kemudian disimpan sebagai baseline untuk dibandingkan setelah proses tuning
 
 2. Hyperparameter Tuning
 
    Untuk menyempurnakan performa, dilakukan pencarian nilai optimal dari parameter `var_smoothing`. Hasil evaluasi model setelah tuning:
-   - Akurasi Training: 77.23%
-   - Akurasi Testing: 75.60%
+   - Akurasi Training: 78.09%
+   - Akurasi Testing: 77.25%
 
 3. Perbandingan Kinerja
    | Model                  | Akurasi Training | Akurasi Testing |
    | ---------------------- | ---------------- | --------------- |
-   | Naive Bayes (Baseline) | 77.15%           | 75.78%          |
-   | Naive Bayes (Tuned)    | 77.23%           | 75.60%          |
+   | Naive Bayes (Baseline) | 78.01%           | 76.88%          |
+   | Naive Bayes (Tuned)    | 78.09%           | 77.25%          |
 
-   Tuning tidak menghasilkan peningkatan signifikan, bahkan terjadi sedikit penurunan pada akurasi testing sebesar -0.18%.
+   Setelah tuning, akurasi training dan testing hanya mengalami peningkatan yang sangat kecil, hampir tidak signifikan. Hal ini mengindikasikan bahwa parameter default model Naive Bayes sudah cukup optimal dan tuning tidak memberikan pengaruh besar terhadap performa model.
+
 
 4. Analisis Kelebihan & Kekurangan                                                                                                                                      
    | Aspek          | Penjelasan                                                                                                                                             |
@@ -417,7 +419,8 @@ Pada tahap ini, dilakukan proses pengembangan model machine learning untuk menye
 
 5. Kesimpulan Sementara
    
-   Naive Bayes memberikan performa awal yang cukup stabil namun tidak meningkat signifikan setelah tuning. Ini menunjukkan bahwa model ini relatif sensitif terhadap asumsi distribusi dan kurang responsif terhadap optimisasi parameter, sehingga lebih cocok digunakan sebagai baseline model daripada solusi utama dalam kasus ini.
+   Model Naive Bayes menunjukkan stabilitas performa dengan akurasi sekitar 77% pada data testing. Karena peningkatan setelah tuning sangat minimal, model ini mungkin sudah berada pada konfigurasi optimalnya dengan parameter default. Untuk peningkatan performa lebih lanjut, bisa dipertimbangkan pendekatan lain seperti fitur engineering atau penggunaan model berbeda.
+
   
 ## Evaluation
 Proyek ini berfokus pada _predictive analytics_ untuk kasus klasifikasi, **metrik utama yang digunakan adalah akurasi**. Akurasi didefinisikan sebagai:
@@ -434,46 +437,45 @@ Evaluasi dilakukan terhadap lima model klasifikasi baik sebelum maupun sesudah p
 **Tabel Perbandingan Akurasi**
 | Model         | Accuracy Before Tuning | Accuracy After Tuning |
 | ------------- | ---------------------- | --------------------- |
-| Extra Trees   | 80.55%                 | 80.73%                |
-| Random Forest | 79.63%                 | 81.28%                |
-| KNN           | 70.83%                 | 78.17%                |
-| SVC           | 68.26%                 | 81.65%                |
-| Naive Bayes   | 75.78%                 | 75.60%                |
+| Extra Trees   | 78.90%                 | 80.00%                |
+| Random Forest | 81.10%                 | 84.22%                |
+| KNN           | 70.64%                 | 78.72%                |
+| SVC           | 68.26%                 | 81.10%                |
+| Naive Bayes   | 76.88%                 | 77.25%                |
 
 **Visualisasi Grafik Akurasi**
 
 Grafik di bawah ini menunjukkan perbandingan akurasi dari setiap model sebelum dan sesudah tuning:
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2975389d-7336-4647-ae26-ba34cb99761c" alt="Gambar 8. Model Accuracy Chart" width="500"/>
+  <img src="https://github.com/user-attachments/assets/55b702e2-7286-41a2-bf65-be6ee8e0c055" alt="Gambar 8. Model Accuracy Chart" width="500"/>
 </p>
 
 <p align="center"><strong>Gambar 8.</strong> Model Accuracy Chart</p>
 
-Dari grafik, dapat dilihat bahwa hampir semua model mengalami peningkatan akurasi setelah tuning, kecuali Naive Bayes yang mengalami sedikit penurunan.
+Dari tabel akurasi dan grafik, terlihat bahwa hampir semua model mengalami peningkatan akurasi setelah tuning, meskipun tingkat peningkatannya bervariasi.
 
 ### Analisis dan Interpretasi
 - Model dengan peningkatan terbesar setelah tuning:
-  - SVC (Support Vector Classifier) meningkat dari 68.26% menjadi 81.65% (+13.39 poin)
-  - KNN meningkat dari 70.83% menjadi 78.17% (+7.34 poin)
+  - **SVC (Support Vector Classifier)** meningkat dari 68.26% menjadi 81.10% (+12.84 poin)
+  - **KNN** meningkat dari 70.64% menjadi 78.72% (+8.08 poin)
 
 - Model dengan performa tertinggi setelah tuning:
-  - SVC: 81.65%
-  - Random Forest: 81.28%
+  - **Random Forest** dengan akurasi tertinggi sebesar 84.22%
+  - **SVC** sebagai alternatif kuat dengan akurasi 81.10%
 
-- Model dengan penurunan performa setelah tuning:
-  - Naive Bayes mengalami penurunan dari 75.78% menjadi 75.60%
-
-- Model yang konsisten dan stabil:
-  - Extra Trees mempertahankan performa tinggi (sekitar 80.7%) dengan hanya sedikit perubahan setelah tuning.
+- Model dengan peningkatan kecil setelah tuning:
+  - **Extra Trees** meningkat dari 78.90% menjadi 80.00%, menunjukkan kestabilan dan performa yang baik.
+  - **Naive Bayes** sedikit mengalami peningkatan dari 76.88% menjadi 77.25%, menunjukkan model yang relatif stabil dan tidak banyak terpengaruh tuning.
 
 ### Kesimpulan Akhir
 Berdasarkan hasil evaluasi:
-- **Support Vector Classifier (SVC)** menjadi **model terbaik** dalam proyek ini dengan akurasi tertinggi **81.65%** setelah tuning. Peningkatan performa SVC menunjukkan bahwa model ini sangat sensitif terhadap pemilihan parameter dan dapat memberikan hasil optimal setelah tuning.
-- **Random Forest** juga menunjukkan performa yang sangat baik, menjadi alternatif terbaik kedua dengan akurasi **81.28%** dan stabilitas yang tinggi.
-- **Naive Bayes**, meskipun cepat dan sederhana, tidak menunjukkan peningkatan yang berarti dan justru mengalami penurunan setelah tuning. Ini menunjukkan keterbatasan model dalam menangani data dengan korelasi antar fitur.
+- **Random Forest** menjadi **model terbaik** dalam proyek ini dengan akurasi tertinggi 84.22% setelah tuning, menunjukkan kehandalan model ini dalam menangani dataset.
+- **SVC** juga menunjukkan peningkatan signifikan dan performa yang baik, menjadikannya alternatif kuat kedua dengan akurasi **81.10%**.
+- **KNN** memberikan peningkatan cukup besar dan bisa menjadi opsi tambahan dengan akurasi **78.72%**.
+- **Extra Trees** dan **Naive Bayes** menunjukkan kestabilan dengan peningkatan yang relatif kecil, sehingga cocok untuk kasus di mana kestabilan dan kecepatan menjadi pertimbangan.
 
-Dengan mempertimbangkan aspek performa, stabilitas, dan peningkatan setelah tuning, **SVC dipilih sebagai model klasifikasi terbaik** untuk dataset ini. Namun, **Random Forest** tetap menjadi pilihan yang solid jika dibutuhkan model dengan interpretabilitas dan kestabilan lebih tinggi.
+Secara keseluruhan, **Random Forest** direkomendasikan sebagai model klasifikasi utama karena akurasinya yang tertinggi dan peningkatan performa yang signifikan setelah tuning. Namun, **SVC** dan **KNN** juga dapat menjadi pilihan yang baik sesuai kebutuhan dan konteks penggunaan.
 
 ## Referensi
 
